@@ -5,7 +5,7 @@ from .sort import *
 from .validations import *
 
 # Funciones:
-# mostrar_todos_los_estudiantes >>> linea 8
+# mostrar_todos_los_estudiantes >>> linea 16
 # mostrar_todos_los_estudiantes_con_promedio >>> linea 43
 # mostrar_materia >>> linea 73
 # mostrar_materias_mayor_promedio >>> linea 84
