@@ -1,3 +1,14 @@
+
+# Funciones:
+# inicializar_matriz >>> linea 12
+# inicializar_lista >>> linea 30
+# convertir_a_minusculas >>> linea 44
+# convertir_a_mayusculas >>> linea 63
+# redondear_a_dos_decimales >>> linea 82
+# calcular_promedios_estudiantes >>> linea 94
+# calcular_promedios_materias >>> linea 115
+# contar_calificaciones_por_materia >>> linea 137
+
 def inicializar_matriz(cantidad_filas: int, cantidad_columnas: int, valor_inicial: any) -> list:
     """
     Inicializa una matriz con las dimensiones dadas y un valor inicial.
@@ -44,10 +55,8 @@ def convertir_a_minusculas(cadena: str) -> str:
     for caracter in cadena:
         # Verificar si el carácter está en mayúsculas (ASCII entre 65 y 90)
         if ord(caracter) >= 65 and ord(caracter) <= 90:
-            # Convertir a minúscula sumando 32 al valor ASCII
             resultado += chr(ord(caracter) + 32)
         else:
-            # Si no es mayúscula, agregar el carácter tal cual
             resultado += caracter
     return resultado
 
@@ -65,10 +74,8 @@ def convertir_a_mayusculas(cadena: str) -> str:
     for caracter in cadena:
         # Verificar si el carácter está en minúsculas (ASCII entre 97 y 122)
         if ord(caracter) >= 97 and ord(caracter) <= 122:
-            # Convertir a mayúscula restando 32 al valor ASCII
             resultado += chr(ord(caracter) - 32)
         else:
-            # Si no es minúscula, agregar el carácter tal cual
             resultado += caracter
     return resultado
 
@@ -83,24 +90,6 @@ def redondear_a_dos_decimales(numero: float) -> float:
         float: El número redondeado a 2 decimales.
     """
     return int(numero * 100) / 100
-
-def calcular_promedio_estudiante(matriz_calificaciones: list, indice_estudiante: int) -> float:
-    """
-    Calcula el promedio de las calificaciones de un estudiante.
-
-    Args:
-        matriz_calificaciones (list): La matriz de calificaciones de los estudiantes.
-        indice_estudiante (int): El índice del estudiante cuyo promedio se calculará.
-
-    Returns:
-        float: El promedio de las calificaciones del estudiante, redondeado a 2 decimales.
-    """
-    calificaciones = matriz_calificaciones[indice_estudiante]
-    suma = 0
-    for calificacion in calificaciones:
-        suma += calificacion
-    promedio = suma / len(calificaciones)
-    return redondear_a_dos_decimales(promedio)
         
 def calcular_promedios_estudiantes(matriz_calificaciones):
     """
@@ -113,17 +102,14 @@ def calcular_promedios_estudiantes(matriz_calificaciones):
         list: Lista con los promedios de cada estudiante, redondeados a 2 decimales.
     """
     num_estudiantes = len(matriz_calificaciones)
-    promedios = [0] * num_estudiantes  # Inicializar la lista de promedios con ceros
-
+    promedios = [0] * num_estudiantes
     for i in range(num_estudiantes):
         suma = 0
-        for j in range(len(matriz_calificaciones[i])):  # Cambiado a for
+        for j in range(len(matriz_calificaciones[i])):
             suma += matriz_calificaciones[i][j]
         promedio = suma / len(matriz_calificaciones[i])
-        # Redondear a 2 decimales sin usar round
-        promedio_redondeado = int(promedio * 100) / 100
-        promedios[i] = promedio_redondeado  # Asignar el promedio redondeado al índice correspondiente
-
+        promedio_redondeado = redondear_a_dos_decimales(promedio)
+        promedios[i] = promedio_redondeado
     return promedios
 
 def calcular_promedios_materias(matriz_calificaciones: list) -> list:
@@ -148,7 +134,6 @@ def calcular_promedios_materias(matriz_calificaciones: list) -> list:
 
     return promedios_materias
 
-
 def contar_calificaciones_por_materia(matriz_calificaciones: list, numero_materia: int) -> list:
     """
     Busca y cuenta la frecuencia de cada calificación (del 1 al 10) en una asignatura determinada.
@@ -158,18 +143,12 @@ def contar_calificaciones_por_materia(matriz_calificaciones: list, numero_materi
         numero_materia (int): El número de la materia (1 a 5), no el índice.
 
     Returns:
-        list: Una lista de 10 elementos donde el índice 0 contiene la cantidad de veces que se repite la nota 1,
-              el índice 1 la cantidad de veces que se repite la nota 2, y así sucesivamente hasta el índice 9
-              para la nota 10.
+        list: Una lista de 10 elementos donde cada índice tiene la cantidad de veces que se ha dado esa calificación.
     """
-    # Inicializamos una lista de 10 ceros para contar las frecuencias de cada nota (del 1 al 10)
-    # El índice 0 corresponde a la nota 1, el índice 1 a la nota 2, etc.
     frecuencia_calificaciones = inicializar_lista(10, 0)
     flag = False
-
     indice_columna_materia = numero_materia - 1
     num_materias = len(matriz_calificaciones[0])
-
     if indice_columna_materia < 0 or indice_columna_materia >= num_materias:
         print(f"Error: El número de materia {numero_materia} es inválido. Debe ser entre 1 y {num_materias}.")
         flag = True
@@ -180,8 +159,6 @@ def contar_calificaciones_por_materia(matriz_calificaciones: list, numero_materi
             if 1 <= calificacion <= 10:
                 frecuencia_calificaciones[calificacion - 1] += 1
             i += 1
-
-    # Si hubo error, vacía la lista para que el resto del programa lo detecte
     if flag == True:
         frecuencia_calificaciones = []
 

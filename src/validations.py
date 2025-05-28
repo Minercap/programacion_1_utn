@@ -4,6 +4,13 @@ from .inputs import *
 from .search import *
 from .sort import *
 
+# Funciones:
+# validar_calificacion >>> linea 14
+# validar_genero >>> linea 30
+# validar_legajo >>> linea 46
+# validar_nombre >>> linea 62
+# validar_numero_entero_positivo >>> linea 85
+
 def validar_calificacion(calificacion: any)-> bool:
     """
     Valida si una calificación es un entero dentro del rango permitido (1-10).
@@ -35,7 +42,6 @@ def validar_genero(genero: any)-> bool:
     if type(genero) != str or (genero != 'F' and genero != 'M' and genero != 'X'):
         es_valido = False
     return es_valido
-
 
 def validar_legajo(legajo: any)-> bool:
     """

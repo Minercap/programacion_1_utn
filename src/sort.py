@@ -14,7 +14,7 @@ def ordenar_datos(matriz_calificaciones: list, lista_nombres: list, lista_genero
         lista_generos (list): La lista de géneros de los estudiantes.
         lista_legajos (list): La lista de legajos de los estudiantes.
         lista_promedios (list): La lista de promedios de los estudiantes.
-        primer_modo (int, optional): 1 para ascendente, 2 para descendente del promedio. Defaults to 1.
+        primer_modo (int, optional): 1 para ascendente, 2 para descendente del promedio.
     """
     for i in range(len(lista_promedios) - 1):
         for j in range(i + 1, len(lista_promedios)):

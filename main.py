@@ -7,12 +7,12 @@ from src.validations import *
 
 # Menú principal
 def menu_principal():
-    matriz_calificaciones = []  # Inicializar las estructuras de datos
+    matriz_calificaciones = []
     lista_nombres = []
     lista_generos = []
     lista_legajos = []
     lista_promedios = []
-    datos_cargados = False  # Flag para verificar si los datos han sido cargados
+    datos_cargados = False  # Flag
 
     while True:
         print("\n--- Menú Principal ---")
@@ -44,7 +44,7 @@ def menu_principal():
                     print("Error: Primero debe cargar los datos.")
             case "4":
                 if datos_cargados == True:
-                    if len(lista_promedios) > 0:  # Verificar si los promedios han sido calculados
+                    if len(lista_promedios) > 0:  # Verificacion
                         print("\n--- Ordenar Datos (Descendente) ---")
                         primer_modo = 1  # Descendente
                         ordenar_datos(matriz_calificaciones, lista_nombres, lista_generos, lista_legajos, lista_promedios, primer_modo)
@@ -55,7 +55,7 @@ def menu_principal():
                     print("Error: Primero debe cargar los datos.")
             case "5":
                 if datos_cargados == True:
-                    if len(lista_promedios) > 0:  # Verificar si los promedios han sido calculados
+                    if len(lista_promedios) > 0:  # Verificacion
                         print("\n--- Materia con el promedio más alto ---")
                         promedios_materias = calcular_promedios_materias(matriz_calificaciones)
                         mostrar_materias_mayor_promedio(promedios_materias)
@@ -65,11 +65,11 @@ def menu_principal():
                     print("Error: Primero debe cargar los datos.")
             case "6":
                 if datos_cargados:
-                    if len(lista_promedios) > 0:  # Verificar si los promedios han sido calculados
+                    if len(lista_promedios) > 0:  # Verificacion
                         print("\n--- Buscar un estudiante por legajo ---")
                         while True:
                             legajo_buscar = input("Ingrese el legajo a buscar: ")
-                            if validar_numero_entero_positivo(legajo_buscar):  # Usar la función personalizada
+                            if validar_numero_entero_positivo(legajo_buscar):
                                 legajo_buscar = int(legajo_buscar)
                                 break
                             else:
@@ -106,7 +106,6 @@ def menu_principal():
                         mostrar_frecuencia_calificaciones(frecuencia, num_materia)
                 else:
                     print("Error: Primero debe cargar los datos.")
-                    
             case "8":
                 print("Saliendo del programa...")
                 break

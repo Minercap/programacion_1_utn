@@ -4,6 +4,13 @@ from .search import *
 from .sort import *
 from .validations import *
 
+# Funciones:
+# cargar_nombres >>> linea 14
+# cargar_generos >>> linea 31
+# cargar_legajos >>> linea 49
+# cargar_calificaciones >>> linea 90
+# cargar_datos >>> linea 120
+
 def cargar_nombres(lista_nombres: list):
     """
     Carga los nombres de los estudiantes en la lista, validando la entrada.
@@ -32,7 +39,7 @@ def cargar_generos(lista_generos: list):
     for i in range(num_estudiantes):
         while True:
             genero = input(f"Ingrese el género del estudiante {i + 1} (F/M/X): ")
-            genero = convertir_a_mayusculas(genero)  # Usar la función personalizada
+            genero = convertir_a_mayusculas(genero)
             if validar_genero(genero) == True:
                 lista_generos[i] = genero
                 break
@@ -47,31 +54,30 @@ def cargar_legajos(lista_legajos: list):
         lista_legajos (list): La lista donde se guardarán los legajos.
     """
     num_estudiantes = len(lista_legajos)
-    for i in range(num_estudiantes):  # `i` es el índice del estudiante
+    for i in range(num_estudiantes):  
         while True:
             legajo = input(f"Ingrese el legajo del estudiante {i + 1}: ")
             
             # Validar que el legajo no esté vacío, tenga 5 caracteres y todos sean dígitos
             if legajo != "" and len(legajo) == 5:
                 es_valido = True
-                for caracter in legajo:
-                    if ord(caracter) < ord('0') or ord(caracter) > ord('9'):  # Verifica si no es un dígito
+                for i in range(len(legajo)):
+                    caracter = legajo[i]
+                    if ord(caracter) < ord('0') or ord(caracter) > ord('9'):
                         es_valido = False
                         break
-                
                 if es_valido:
-                    legajo = int(legajo)  # Convertir a entero después de validar
-                    
-                    # Verificar si el legajo ya existe en la lista (sin usar `in`)
+                    legajo = int(legajo)  
+                    # Verificar si el legajo ya existe en la lista.
                     legajo_existe = False
-                    for legajo_existente in lista_legajos:
-                        if legajo == legajo_existente:
+                    legajo_existe = False
+                    for j in range(len(lista_legajos)):
+                        if legajo == lista_legajos[j]:
                             legajo_existe = True
                             break
-                    
                     if legajo_existe:
                         print("Error: El legajo ya existe. Ingrese un legajo único.")
-                    elif validar_legajo(legajo):  # Validación adicional
+                    elif validar_legajo(legajo):
                         lista_legajos[i] = legajo
                         break
                     else:
@@ -80,7 +86,6 @@ def cargar_legajos(lista_legajos: list):
                     print("Error: El legajo debe contener solo números.")
             else:
                 print("Error: El legajo debe ser un número entero de 5 dígitos.")
-
 
 def cargar_calificaciones(matriz_calificaciones: list):
     """
@@ -104,7 +109,6 @@ def cargar_calificaciones(matriz_calificaciones: list):
                         if ord(caracter) < ord('0') or ord(caracter) > ord('9'):  # Verifica si no es un dígito
                             es_valido = False
                             break
-                    
                     if es_valido and 1 <= int(calificacion) <= 10:  # Verifica el rango
                         matriz_calificaciones[i][j] = int(calificacion)
                         break
@@ -112,8 +116,7 @@ def cargar_calificaciones(matriz_calificaciones: list):
                         print("Error: La calificación debe ser un número entero entre 1 y 10.")
                 else:
                     print("Error: La calificación no puede estar vacía.")
-
-                    
+              
 def cargar_datos():
     """
     Carga todos los datos de los estudiantes, utilizando funciones auxiliares.
@@ -122,7 +125,6 @@ def cargar_datos():
             La matriz de calificaciones, la lista de nombres,
             la lista de géneros y la lista de legajos.
     """
-    # Inicializamos las listas y la matriz
     num_estudiantes = input("Ingrese la cantidad de estudiantes: ")
     while validar_numero_entero_positivo(num_estudiantes) != True:
         print("Error: Debe ingresar un número entero positivo.")
@@ -144,14 +146,14 @@ def cargar_datos():
 
     # Preguntar al usuario si desea cargar los datos manualmente
     opcion = input("¿Desea cargar los datos manualmente? (S/N): ")
-    opcion = convertir_a_mayusculas(opcion)  # Convertir a mayúsculas para evitar errores de entrada
+    opcion = convertir_a_mayusculas(opcion)
     if opcion == "S":
         cargar_nombres(lista_nombres)
         cargar_generos(lista_generos)
         cargar_legajos(lista_legajos)
         cargar_calificaciones(matriz_calificaciones)
     else:
-        # Hardcodeamos algunos datos para pruebas
+        # Hardcodeo de datos para pruebas
         lista_nombres = [
             "ana", "pedro", "luis", "maria", "sofia",
             "juan", "laura", "carlos", "elena", "martin",
